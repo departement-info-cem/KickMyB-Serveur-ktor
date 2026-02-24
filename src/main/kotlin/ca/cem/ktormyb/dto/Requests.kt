@@ -1,5 +1,6 @@
 package ca.cem.ktormyb.dto
 
+import ca.cem.ktormyb.config.EpochMillisToIsoStringSerializer
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,5 +16,8 @@ data class RegisterRequest(
 @Serializable
 data class AddTaskRequest(
     val nom: String,
-    val dateLimite: Long // epoch millis
+    @Serializable(with = EpochMillisToIsoStringSerializer::class)
+    val dateLimite: Long // internally stored as epoch millis
 )
+
+

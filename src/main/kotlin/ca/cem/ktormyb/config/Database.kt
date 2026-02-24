@@ -8,6 +8,7 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
 import kotlinx.coroutines.Dispatchers
+import org.h2.tools.Server
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
@@ -30,6 +31,9 @@ fun Application.initDatabase() {
     }
 
     Database.connect(HikariDataSource(hikariConfig))
+
+    // Enable H2 Console
+    Server.createWebServer("-webPort", "8081").start()
 
     transaction {
         SchemaUtils.createMissingTablesAndColumns(Users, Tasks, Advancements, Photos)

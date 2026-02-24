@@ -44,7 +44,7 @@ fun Route.mvcRoutes() {
                             card(
                                 icon = "fa-database",
                                 title = "Base de données",
-                                linkHref = "/h2-console",
+                                linkHref = "http://localhost:8081",
                                 linkLabel = "H2 Console",
                                 buttonClass = "is-info"
                             )

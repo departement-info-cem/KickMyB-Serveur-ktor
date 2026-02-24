@@ -1,5 +1,6 @@
 package ca.cem.ktormyb.dto
 
+import ca.cem.ktormyb.config.EpochMillisToIsoStringSerializer
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -10,12 +11,13 @@ data class HomeItem(
     val id: Long,
     val nom: String,
     val pourcentageAvancement: Int,
+    @Serializable(with = EpochMillisToIsoStringSerializer::class)
     val dateLimite: Long,
     val pourcentageTemps: Int
 )
 
 @Serializable
-data class ProgressChange(val valeur: Int, val dateChangement: Long)
+data class ProgressChange(val valeur: Int, @Serializable(with = EpochMillisToIsoStringSerializer::class) val dateChangement: Long)
 
 @Serializable
 data class TaskDetail(
@@ -23,6 +25,7 @@ data class TaskDetail(
     val nom: String,
     val pourcentageTemps: Int,
     val pourcentageAvancement: Int,
+    @Serializable(with = EpochMillisToIsoStringSerializer::class)
     val dateLimite: Long,
     val changements: List<ProgressChange>
 )
@@ -32,6 +35,7 @@ data class HomeItemWithPhoto(
     val id: Long,
     val nom: String,
     val pourcentageAvancement: Int,
+    @Serializable(with = EpochMillisToIsoStringSerializer::class)
     val dateLimite: Long,
     val pourcentageTemps: Int,
     val idPhoto: Long?
@@ -43,6 +47,7 @@ data class TaskDetailWithPhoto(
     val nom: String,
     val pourcentageTemps: Int,
     val pourcentageAvancement: Int,
+    @Serializable(with = EpochMillisToIsoStringSerializer::class)
     val dateLimite: Long,
     val changements: List<ProgressChange>,
     val idPhoto: Long?
